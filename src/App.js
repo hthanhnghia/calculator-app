@@ -1,25 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Number from './Number'
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      result: 0
+    }
+  }
+
+  handleClick = (number) => {
+    this.setState({result: number})
+  }
+
+  createNumberDiv = () => {
+      let numbers = []
+      for (let i=1; i<=9; i++) {
+        numbers.push(
+          <div className="grid-item" key={i}>
+            <Number value={i} onClick={()=>this.handleClick(i)} />
+          </div>
+        )
+      }
+      return numbers
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="calculatorContainer">
+        <div className="grid-item result">
+          {this.state.result}
+        </div>
+
+        <div className="grid-item clear-calculator">
+          clear
+        </div>
+
+        {this.createNumberDiv()}
+
+        <div className="operators">
+          <div className="grid-item">:</div>
+          <div className="grid-item">-</div>
+          <div className="grid-item">+</div>
+          <div className="grid-item">=</div>
+        </div>
       </div>
     );
   }
