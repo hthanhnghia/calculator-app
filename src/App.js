@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       result: 0
     }
+    this.clearResult = this.clearResult.bind(this)
   }
 
   handleClick = (number) => {
@@ -26,26 +27,33 @@ class App extends Component {
       return numbers
   }
 
+  clearResult = () => {
+    this.setState({result:0})
+  }
+
   render() {
     return (
-      <div className="calculatorContainer">
-        <div className="grid-item result">
-          {this.state.result}
-        </div>
+      <body tabIndex="0"
+            onKeyDown={(e)=>this.handleClick(e.keyCode)}>
+        <div className="calculatorContainer">
+          <div className="grid-item result">
+            {this.state.result}
+          </div>
 
-        <div className="grid-item clear-calculator">
-          clear
-        </div>
+          <div className="grid-item clear-calculator" onClick={this.clearResult}>
+            clear
+          </div>
 
-        {this.createNumberDiv()}
+          {this.createNumberDiv()}
 
-        <div className="operators">
-          <div className="grid-item">:</div>
-          <div className="grid-item">-</div>
-          <div className="grid-item">+</div>
-          <div className="grid-item">=</div>
+          <div className="operators">
+            <div className="grid-item">:</div>
+            <div className="grid-item">-</div>
+            <div className="grid-item">+</div>
+            <div className="grid-item">=</div>
+          </div>
         </div>
-      </div>
+      </body>
     );
   }
 }
