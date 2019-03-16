@@ -33,8 +33,9 @@ class App extends Component {
 
   render() {
     return (
-      <body tabIndex="0"
-            onKeyDown={(e)=>this.handleClick(e.keyCode)}>
+      <div className="container" 
+          tabIndex="0"
+          onKeyDown={(e)=>this.handleClick(e.keyCode)}>
         <div className="calculatorContainer">
           <div className="grid-item result">
             {this.state.result}
@@ -53,7 +54,7 @@ class App extends Component {
             <div className="grid-item">=</div>
           </div>
         </div>
-      </body>
+      </div>
     );
   }
 }
